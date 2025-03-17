@@ -1,7 +1,7 @@
 ---
 title: BGP SR Policy Extensions for Path Scheduling
 abbrev: BGP SR Policy Scheduling
-docname: draft-zzd-idr-sr-policy-scheduling-08
+docname: draft-zzd-idr-sr-policy-scheduling-latest
 obsoletes:
 updates:
 date:
