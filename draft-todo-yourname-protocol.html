@@ -4,16 +4,19 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>TODO - Your title</title>
-<meta content="Your Name Here" name="author">
+<title>BGP SR Policy Extensions for Path Scheduling</title>
+<meta content="Li Zhang" name="author">
+<meta content="Tianran Zhou" name="author">
+<meta content="Jie Dong" name="author">
+<meta content="Minxue Wang" name="author">
+<meta content="Nkosinathi Nzima" name="author">
 <meta content="
-       TODO Abstract 
+       Segment Routing (SR) policy enables instantiation of an ordered list of segments with a specific intent for traffic steering. When using SR policy in a time-variant network, delivering the time-variant information associated with paths is necessary in some scenarios. 
+       This document proposes extensions to BGP SR Policy to deliver the schedule information of candidate path (segment list) and its associated attributes. 
     " name="description">
 <meta content="xml2rfc 3.28.0" name="generator">
-<meta content="next generation" name="keyword">
-<meta content="unicorn" name="keyword">
-<meta content="sparkling distributed ledger" name="keyword">
-<meta content="draft-todo-yourname-protocol-latest" name="ietf.draft">
+<meta content="Internet-Draft" name="keyword">
+<meta content="draft-zzd-idr-sr-policy-scheduling-08" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.28.0
     Python 3.12.9
@@ -1045,11 +1048,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">TODO - Abbreviation</td>
+<td class="center">BGP SR Policy Scheduling</td>
 <td class="right">March 2025</td>
 </tr></thead>
 <tfoot><tr>
-<td class="left">Here</td>
+<td class="left">Zhang, et al.</td>
 <td class="center">Expires 18 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
@@ -1058,45 +1061,48 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
 <dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">WG Working Group</dd>
+<dd class="workgroup">IDR</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-todo-yourname-protocol-latest</dd>
+<dd class="internet-draft">draft-zzd-idr-sr-policy-scheduling-08</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2025-03-17" class="published">17 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
-<dd class="intended-status">Informational</dd>
+<dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
 <dd class="expires"><time datetime="2025-09-18">18 September 2025</time></dd>
-<dt class="label-authors">Author:</dt>
+<dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
-      <div class="author-name">Y. N. Here</div>
-<div class="org">Your Organization Here</div>
+      <div class="author-name">L. Zhang, <span class="editor">Ed.</span>
+</div>
+<div class="org">Huawei</div>
+</div>
+<div class="author">
+      <div class="author-name">T. Zhou</div>
+<div class="org">Huawei</div>
+</div>
+<div class="author">
+      <div class="author-name">J. Dong</div>
+<div class="org">Huawei</div>
+</div>
+<div class="author">
+      <div class="author-name">M. Wang</div>
+<div class="org">China Mobile</div>
+</div>
+<div class="author">
+      <div class="author-name">N. Nzima</div>
+<div class="org">MTN</div>
 </div>
 </dd>
 </dl>
 </div>
-<h1 id="title">TODO - Your title</h1>
+<h1 id="title">BGP SR Policy Extensions for Path Scheduling</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">TODO Abstract<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-</section>
-<section class="note rfcEditorRemove" id="section-note.1">
-      <h2 id="name-about-this-document">
-<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
-      </h2>
-<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
-<p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://example.com/LATEST">https://example.com/LATEST</a></span>.
-        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-todo-yourname-protocol/">https://datatracker.ietf.org/doc/draft-todo-yourname-protocol/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
-<p id="section-note.1-3">
-        Discussion of this document takes place on the
-        WG Working Group mailing list (<span><a href="mailto:WG@example.com">mailto:WG@example.com</a></span>),
-        which is archived at <span><a href="https://example.com/WG">https://example.com/WG</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
-<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/USER/REPO">https://github.com/USER/REPO</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">Segment Routing (SR) policy enables instantiation of an ordered list of segments with a specific intent for traffic steering. When using SR policy in a time-variant network, delivering the time-variant information associated with paths is necessary in some scenarios.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This document proposes extensions to BGP SR Policy to deliver the schedule information of candidate path (segment list) and its associated attributes.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1148,100 +1154,475 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-requirements-language" class="internal xref">Requirements Language</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-motivation" class="internal xref">Motivation</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-network-with-discontinuous-" class="internal xref">Network with Discontinuous Links</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-network-with-frequent-topol" class="internal xref">Network with Frequent Topology Changes</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-schedule-information-in-sr-" class="internal xref">Schedule Information in SR Policy</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-schedule-information-sub-tl" class="internal xref">Schedule Information Sub-TLV</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-operations" class="internal xref">Operations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-advertisement-of-sr-policie" class="internal xref">Advertisement of SR Policies with Schedule Information</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-reception-of-an-sr-policy-w" class="internal xref">Reception of an SR Policy with Schedule Information</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-validation-of-schedule-info" class="internal xref">Validation of Schedule Information</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
+                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-enable-disable-candidate-pa" class="internal xref">Enable/Disable Candidate Paths/Segment Lists</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
 </section>
 </div>
-<div id="introduction">
+<div id="intro">
 <section id="section-1">
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">TODO Introduction<a href="#section-1-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="conventions-and-definitions">
-<section id="section-2">
-      <h2 id="name-conventions-and-definitions">
-<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
-      </h2>
-<p id="section-2-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+<p id="section-1-1"><span>[<a href="#RFC9657" class="cite xref">RFC9657</a>]</span> introduces a set of time-variant network use cases where the topology of the network changes predictably. When the networks uses traditional routing protocols, it takes these topology changes as unexpected events and may cause and packet loss. However, the topology changes of these networks can be predicted in advance, therefore some measures can be taken in advance to prevent the packet loss. With this idea, <span>[<a href="#I-D.ietf-tvr-requirements" class="cite xref">I-D.ietf-tvr-requirements</a>]</span> describes the requirements of using the time-variant information in a network. In <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tvr-requirements-05#section-3.4.1" class="relref">Section 3.4.1</a> of [<a href="#I-D.ietf-tvr-requirements" class="cite xref">I-D.ietf-tvr-requirements</a>]</span>, it describes the centralized routing scenarios with time-variant information, in which the network entities receive the time variable information and traffic forwarding rules directly from a logically centralized source(an Orchestrator or network controller). The time-variant information is especially essential when there is a risk that a logically centralized source may loses connectivity with the network entities.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Segment Routing (SR) policy <span>[<a href="#RFC9256" class="cite xref">RFC9256</a>]</span> is a set of candidate SR paths consisting of one or more segment lists and necessary path attributes. It describes the traffic forwarding rules for specific flows. <span>[<a href="#I-D.ietf-idr-sr-policy-safi" class="cite xref">I-D.ietf-idr-sr-policy-safi</a>]</span> introduces how BGP may be used to distribute SR Policy candidate paths. It introduces a BGP SAFI with new NLRI to advertise the candidate paths and specific attributes of a SR Policy from a controller or path computation engine (PCE) to the network entities. However, when using BGP SR Policy in a time-variant network, it can't advertise the schedule information associated with paths.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">This document proposes extensions to BGP SR Policy to carry the schedule information of candidate paths/segment lists.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<div id="requirements-language">
+<section id="section-1.1">
+        <h3 id="name-requirements-language">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-requirements-language" class="section-name selfRef">Requirements Language</a>
+        </h3>
+<p id="section-1.1-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
-appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
+appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="motivation">
+<section id="section-2">
+      <h2 id="name-motivation">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-motivation" class="section-name selfRef">Motivation</a>
+      </h2>
+<p id="section-2-1">Most of the time-variant network use cases using BGP SR Policy could be benefit from this work. In some cases, carrying the time-variant information with SR Policy is essential.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">This section describes the cases that requires extending SR Policy with schedule information.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<div id="network-with-discontinuous-links">
+<section id="section-2.1">
+        <h3 id="name-network-with-discontinuous-">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-network-with-discontinuous-" class="section-name selfRef">Network with Discontinuous Links</a>
+        </h3>
+<p id="section-2.1-1">In some time-variant network cases, the links between the network entities and network controller may very weak or intermittent, this is very typical in Resource Preservation and Dynamic Reachability network<span>[<a href="#RFC9657" class="cite xref">RFC9657</a>]</span>. In these cases, Real-time SR policy advertising (before changes occur) may not be timely. For example, when a link of an old path is about to be disconnected, the network controller is going to advertise a new path to the headend. However, the link between the headend and the network controller is not available. As a result, the new path cannot be advertised in time, causing packet loss.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Therefore, in these cases, once the links between the headend and network controller are available, the controller need to advertise the paths with schedule information for a period in the future to the headend. Then the headend could determine valid paths in the future based on the schedule information of SR policy.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="network-with-frequent-topology-changes">
+<section id="section-2.2">
+        <h3 id="name-network-with-frequent-topol">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-network-with-frequent-topol" class="section-name selfRef">Network with Frequent Topology Changes</a>
+        </h3>
+<p id="section-2.2-1">There are also some time-variant network cases that topology changes frequently. This is very typical when the number of network entities is very large (For example, a Dynamic Reachability network with hundreds or thousands of nodes). In this kind of time-variant network, a path form one network entity to another changes frequently, sometimes it can only be maintained for a few minutes or seconds.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2-2">Considering that there are multiple paths in a network that computed by the controller, the SR Policies with candidate paths may be advertised to the headend every few seconds. It poses great changeling to the network controller. However, using schedule information could advertise several paths once, which greatly mitigate the pressure of network controllers.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="schedule-information-in-sr-policy">
+<section id="section-3">
+      <h2 id="name-schedule-information-in-sr-">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-schedule-information-in-sr-" class="section-name selfRef">Schedule Information in SR Policy</a>
+      </h2>
+<p id="section-3-1">The NLRI defined in <span>[<a href="#I-D.ietf-idr-segment-routing-te-policy" class="cite xref">I-D.ietf-idr-segment-routing-te-policy</a>]</span> contains the SR Policy candidate path. The content of the SR Policy Candidate Path is encoded in the Tunnel Encapsulation Attribute defined in <span>[<a href="#RFC9012" class="cite xref">RFC9012</a>]</span> using a new Tunnel-Type called SR Policy Type with codepoint 15. The SR Policy encoding structure is as follows:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-2">
+<pre>
+SR Policy SAFI NLRI: &lt;Distinguisher, Policy-Color, Endpoint&gt;
+      Attributes:
+         Tunnel Encapsulation Attribute (23)
+            Tunnel Type: SR Policy (15)
+                Binding SID
+                SRv6 Binding SID
+                Preference
+                Priority
+                Policy Name
+                Policy Candidate Path Name
+                Explicit NULL Label Policy (ENLP)
+                Segment List
+                    Weight
+                    Segment
+                    Segment
+                    ...
+                ...
+</pre><a href="#section-3-2" class="pilcrow">¶</a>
+</div>
+<p id="section-3-3">A candidate path includes multiple SR paths, each of which is specified by a segment list. The schedule information can be applied to a candidate path, indicating the valid time for each candidate path and its associated attributes.
+The new SR Policy encoding structure is expressed as below:<a href="#section-3-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-4">
+<pre>
+SR Policy SAFI NLRI: &lt;Distinguisher, Policy-Color, Endpoint&gt;
+      Attributes:
+         Tunnel Encapsulation Attribute (23)
+            Tunnel Type: SR Policy (15)
+                Binding SID
+                SRv6 Binding SID
+                Preference
+                Priority
+                Policy Name
+                Policy Candidate Path Name
+                Explicit NULL Label Policy (ENLP)
+                Schedule Information
+                Segment List
+                    Weight
+                    Segment
+                    Segment
+                    ...
+                ...
+</pre><a href="#section-3-4" class="pilcrow">¶</a>
+</div>
+<p id="section-3-5">The schedule Information also can be applied to a segment list to indicate the valid time for a segment list and its associated attributes.
+The new SR Policy encoding structure is expressed as below:<a href="#section-3-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-6">
+<pre>
+SR Policy SAFI NLRI: &lt;Distinguisher, Policy-Color, Endpoint&gt;
+      Attributes:
+         Tunnel Encapsulation Attribute (23)
+            Tunnel Type: SR Policy (15)
+                Binding SID
+                SRv6 Binding SID
+                Preference
+                Priority
+                Policy Name
+                Policy Candidate Path Name
+                Explicit NULL Label Policy (ENLP)
+                Segment List
+                    Schedule Information
+                    Weight
+                    Segment
+                    Segment
+                    ...
+                ...
+</pre><a href="#section-3-6" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="schedule-information-sub-tlv">
+<section id="section-4">
+      <h2 id="name-schedule-information-sub-tl">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-schedule-information-sub-tl" class="section-name selfRef">Schedule Information Sub-TLV</a>
+      </h2>
+<p id="section-4-1">The schedule information sub-TLV indicates one or more valid time slot for one or more paths. The format of schedule information sub-TLV is shown as follows:<a href="#section-4-1" class="pilcrow">¶</a></p>
+<span id="name-scheduling-information-sub-"></span><div id="ref-to-fig1">
+<figure id="figure-1">
+        <div class="alignLeft art-text artwork" id="section-4-2.1">
+<pre>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     Type      |     Length    |Schedule Number|    Reserved   |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
+/                        Schedules                              /
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-scheduling-information-sub-" class="selfRef">Scheduling Information Sub-TL</a>
+        </figcaption></figure>
+</div>
+<p id="section-4-3">Type: TBD1<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">Length: the size of the value field in octets.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">Schedule Number: indicates the number of schedules.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Schedules: one or more schedules, each schedule indicates the duration when the candidate path (segment list) is active. The format of each schedule is shown as follows:<a href="#section-4-6" class="pilcrow">¶</a></p>
+<span id="name-format-of-schedules"></span><div id="ref-to-fig2">
+<figure id="figure-2">
+        <div class="alignLeft art-text artwork" id="section-4-7.1">
+<pre>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Schedule-id                         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Flags  |S|P|R|    Length     |          Reserved             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Start Time                           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     Start Time(Continue)                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       End Time/Duration                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                  End Time/Duration(Continue)                  |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                   Recurrence count/Bound(Optional)            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                   Recurrence count/Bound(Optional)            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     Frequency (Optional)                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-format-of-schedules" class="selfRef">Format of Schedules</a>
+        </figcaption></figure>
+</div>
+<p id="section-4-8">Schedule-id: 32-bit value, the unique identifier to distinguish each schedule within a SR Policy, this value is allocated by the SR Policy generator.<a href="#section-4-8" class="pilcrow">¶</a></p>
+<p id="section-4-9">Flags: 8 bits, currently only 2 bits are used, the other bits are reserved.<a href="#section-4-9" class="pilcrow">¶</a></p>
+<p id="section-4-10">Length: 8 bits, indicates the length of this schedule in octets.<a href="#section-4-10" class="pilcrow">¶</a></p>
+<p id="section-4-11">S (Schedule type): one-bit flag to indicate the type of a schedule. If S=0, it indicates the schedule only has one instance, the Recurrence Count/Bound, Frequency and Interval field should not be included in the sub-TLV; If S=1, it indicates the schedule has multiple instances, the Recurrence Count/Bound, Frequency and Interval field should be included.<a href="#section-4-11" class="pilcrow">¶</a></p>
+<p id="section-4-12">P (Period type): one-bit flag to indicate the description type of a period. if P=1, then the period is described by a start time filed and an end time field; If P =0, then the period is described by a start time field and a duration time field.<a href="#section-4-12" class="pilcrow">¶</a></p>
+<p id="section-4-13">R (Recurrence bound type): one-bit flag to indicate the how to determine whether the recurrence is end. if R=1, then the end of recurrence is determined by a detail timepoint; If R = 0, then the end of the recurrence is determined by the number of occurrences.<a href="#section-4-13" class="pilcrow">¶</a></p>
+<p id="section-4-14">Start Time: 64-bit value, the number of seconds since the epoch, it indicates when the candidate path (segment list) and its associated attributes start to take effect.<a href="#section-4-14" class="pilcrow">¶</a></p>
+<p id="section-4-15">End Time (Duration): 64-bit value, if the flag P=1, then it is the number of seconds since the epoch, it indicates when the candidate path (segment list) and its associated attributes becomes ineffective. If the flag P=0, then it is the number of seconds since the Start Time, it indicates how long the candidate path (segment list) and its associated attributes are effective.<a href="#section-4-15" class="pilcrow">¶</a></p>
+<p id="section-4-16">Recurrence Count/Bound(optional): 64-bit value, this field <span class="bcp14">SHOULD</span> be included when the flag P is set to 1. When the flag R=0, then this field indicates the max number of occurrences. For example, if it is set to 2, then the schedule will repeat twice with the specified Frequency and Interval. When the flag R=1, then tis field indicates the bounded timepoint of recurrence, it is descripted by the number of seconds since the epoch.<a href="#section-4-16" class="pilcrow">¶</a></p>
+<p id="section-4-17">Frequency(optional): 32-bit value, this field should be included when the flag S is set to 1. It is the numbers of seconds since the Start Time of an instance to the Start Time of next instance. This field indicates the recurrence frequency for all the instance of this schedule.<a href="#section-4-17" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="operations">
+<section id="section-5">
+      <h2 id="name-operations">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-operations" class="section-name selfRef">Operations</a>
+      </h2>
+<div id="advertisement-of-sr-policies-with-schedule-information">
+<section id="section-5.1">
+        <h3 id="name-advertisement-of-sr-policie">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-advertisement-of-sr-policie" class="section-name selfRef">Advertisement of SR Policies with Schedule Information</a>
+        </h3>
+<p id="section-5.1-1">As described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-idr-sr-policy-safi-13#section-4.1" class="relref">Section 4.1</a> of [<a href="#I-D.ietf-idr-sr-policy-safi" class="cite xref">I-D.ietf-idr-sr-policy-safi</a>]</span>, typically, an SR Policy is computed by a controller or a path computation engine (PCE) and originated by a BGP speaker on its behalf. The schedule information is also computed by a controller or a PCE which can access to all the predicted topology changes. The predicted topology changes could be got from management interfaces or other means.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">The controller or PCE <span class="bcp14">SHOULD</span> maintain a time-variant event database as described in <span><a href="https://datatracker.ietf.org/doc/html/draft-zdm-tvr-applicability-02#section-6" class="relref">Section 6</a> of [<a href="#I-D.zdm-tvr-applicability" class="cite xref">I-D.zdm-tvr-applicability</a>]</span> to store all the predicted information, and compute SR Policies with schedule information based on the database.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">Each Candidate Path or Segment List may have multiple schedules, each schedule is identified by schedule-id, the controller or PCE <span class="bcp14">MUST</span> make the schedule-id unique within a specific SR Policy.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">The controller or PCE <span class="bcp14">MUST</span> ensure that the BGP speakers who will receive the SR Policy with schedule information have the capability to deal with the schedule information.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="reception-of-an-sr-policy-with-schedule-information">
+<section id="section-5.2">
+        <h3 id="name-reception-of-an-sr-policy-w">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-reception-of-an-sr-policy-w" class="section-name selfRef">Reception of an SR Policy with Schedule Information</a>
+        </h3>
+<div id="validation-of-schedule-information">
+<section id="section-5.2.1">
+          <h4 id="name-validation-of-schedule-info">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-validation-of-schedule-info" class="section-name selfRef">Validation of Schedule Information</a>
+          </h4>
+<p id="section-5.2.1-1">On reception of an SR Policy, a BGP speaker first determines if it is valid as described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-idr-sr-policy-safi-13#section-4.2.1" class="relref">Section 4.2.1</a> of [<a href="#I-D.ietf-idr-sr-policy-safi" class="cite xref">I-D.ietf-idr-sr-policy-safi</a>]</span>. When a headend receives a SR Policy form it neighbors or controller, it <span class="bcp14">SHOULD</span> perform schedule information validation based on the following rules:<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2.1-2.1">
+              <p id="section-5.2.1-2.1.1">The headend <span class="bcp14">MUST NOT</span> use the SR Policy with schedule information when it does not have the capability to deal with the schedule information.<a href="#section-5.2.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.1-2.2">
+              <p id="section-5.2.1-2.2.1">When multiple schedules are present within one SR Policy, the schedule-id of each schedules <span class="bcp14">MUST</span> be different. If there are multiple schedules with the same schedule-id, then the SR Policy <span class="bcp14">MUST</span> be considered as malformed.<a href="#section-5.2.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.1-2.3">
+              <p id="section-5.2.1-2.3.1">The Start Time of Schedule Information TLV <span class="bcp14">MUST</span> be later than the time it be received, if not, the SR Policy <span class="bcp14">MUST</span> be considered as malformed.<a href="#section-5.2.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.1-2.4">
+              <p id="section-5.2.1-2.4.1">If the End Time/Duration field is used to indicated the end time, then it <span class="bcp14">MUST</span> be later than the Start Time, if not, the SR Policy <span class="bcp14">MUST</span> be considered as malformed.<a href="#section-5.2.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.1-2.5">
+              <p id="section-5.2.1-2.5.1">If the Frequency field is present in the Schedule Information TLV, then it <span class="bcp14">MUST</span> be greater than the difference between the End Time and Start Time(P=1), or greater than the Duration(P=0), if not, the SR Policy <span class="bcp14">MUST</span> be considered as malformed.<a href="#section-5.2.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.1-2.6">
+              <p id="section-5.2.1-2.6.1">If the Recurrence Count/Bound field is present and used to indicate the boundary time point, then it <span class="bcp14">MUST</span> be greater than the End Time(P=1), or greater than the sum of Start Time and Duration(P=0), if not, the SR Policy <span class="bcp14">MUST</span> be considered as malformed.<a href="#section-5.2.1-2.6.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-5.2.1-3">If a headend receives a SR Policy that considered as malformed, then the SR Policy <span class="bcp14">MUST NOT</span> be used.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-4">As described in <span>[<a href="#I-D.ietf-idr-sr-policy-safi" class="cite xref">I-D.ietf-idr-sr-policy-safi</a>]</span>, the BGP SR Policy is distinguished by &lt;distinguisher, color, endpoint&gt; tuple. Whenever a headend receives a SR Policy that it has received before, the SR Policy is considered as the fully replacement of the old one.<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="enabledisable-candidate-pathssegment-lists">
+<section id="section-5.2.2">
+          <h4 id="name-enable-disable-candidate-pa">
+<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-enable-disable-candidate-pa" class="section-name selfRef">Enable/Disable Candidate Paths/Segment Lists</a>
+          </h4>
+<p id="section-5.2.2-1">When a headend receives a SR Policy with schedule information, it <span class="bcp14">SHOULD</span> parse the SR Policy and save the schedule information locally. When a data packet arrives, it will steer it to a specific SR Policy by color or other means.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-2">Within a specific SR Policy, the headend dynamically enable/desable different Candidate Paths/Segment Lists based on the schedule information.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-3">
+<section id="section-6">
       <h2 id="name-security-considerations">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-3-1">TODO Security<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">TBD<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-4">
+<section id="section-7">
       <h2 id="name-iana-considerations">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-4-1">This document has no IANA actions.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">This document defines a sub-TLV in the registry "BGP Tunnel Encapsulation Attribute sub-TLVs" to be assigned by IANA:<a href="#section-7-1" class="pilcrow">¶</a></p>
+<table class="center" id="table-1">
+        <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Value</th>
+            <th class="text-left" rowspan="1" colspan="1">Description</th>
+            <th class="text-left" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">TBD1</td>
+            <td class="text-left" rowspan="1" colspan="1">Schedule Information (SI)</td>
+            <td class="text-left" rowspan="1" colspan="1">This document</td>
+          </tr>
+        </tbody>
+      </table>
+<p id="section-7-3">The type value of this sub-TLV is recommended to be token from the range of 64-125(First Come First Served).<a href="#section-7-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-normative-references">
-<section id="section-5">
-      <h2 id="name-normative-references">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<div id="sec-combined-references">
+<section id="section-8">
+      <h2 id="name-references">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<div id="sec-normative-references">
+<section id="section-8.1">
+        <h3 id="name-normative-references">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
+<dt id="I-D.ietf-tvr-requirements">[I-D.ietf-tvr-requirements]</dt>
+        <dd>
+<span class="refAuthor">King, D.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Sipos, B.</span>, and <span class="refAuthor">L. Zhang</span>, <span class="refTitle">"TVR (Time-Variant Routing) Requirements"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tvr-requirements-05</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/api/v1/doc/document/draft-ietf-tvr-requirements/">https://datatracker.ietf.org/api/v1/doc/document/draft-ietf-tvr-requirements/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9256">[RFC9256]</dt>
+        <dd>
+<span class="refAuthor">Filsfils, C.</span>, <span class="refAuthor">Talaulikar, K., Ed.</span>, <span class="refAuthor">Voyer, D.</span>, <span class="refAuthor">Bogdanov, A.</span>, and <span class="refAuthor">P. Mattes</span>, <span class="refTitle">"Segment Routing Policy Architecture"</span>, <span class="seriesInfo">RFC 9256</span>, <span class="seriesInfo">DOI 10.17487/RFC9256</span>, <time datetime="2022-07" class="refDate">July 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9256">https://www.rfc-editor.org/info/rfc9256</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-idr-sr-policy-safi">[I-D.ietf-idr-sr-policy-safi]</dt>
+        <dd>
+<span class="refAuthor">Previdi, S.</span>, <span class="refAuthor">Filsfils, C.</span>, <span class="refAuthor">Talaulikar, K.</span>, <span class="refAuthor">Mattes, P.</span>, and <span class="refAuthor">D. Jain</span>, <span class="refTitle">"Advertising Segment Routing Policies in BGP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-idr-sr-policy-safi-13</span>, <time datetime="2025-02-06" class="refDate">6 February 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-idr-sr-policy-safi-13">https://datatracker.ietf.org/doc/html/draft-ietf-idr-sr-policy-safi-13</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-    <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-idr-segment-routing-te-policy">[I-D.ietf-idr-segment-routing-te-policy]</dt>
+        <dd>
+<span class="refAuthor">Previdi, S.</span>, <span class="refAuthor">Filsfils, C.</span>, <span class="refAuthor">Talaulikar, K.</span>, <span class="refAuthor">Mattes, P.</span>, and <span class="refAuthor">D. Jain</span>, <span class="refTitle">"Advertising Segment Routing Policies in BGP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-idr-segment-routing-te-policy-26</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-idr-segment-routing-te-policy-26">https://datatracker.ietf.org/doc/html/draft-ietf-idr-segment-routing-te-policy-26</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.zdm-tvr-applicability">[I-D.zdm-tvr-applicability]</dt>
+      <dd>
+<span class="refAuthor">Zhang, L.</span>, <span class="refAuthor">Dong, J.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"Applicability of TVR YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-zdm-tvr-applicability-02</span>, <time datetime="2025-02-28" class="refDate">28 February 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/api/v1/doc/document/draft-zdm-tvr-applicability/">https://datatracker.ietf.org/api/v1/doc/document/draft-zdm-tvr-applicability/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
 </div>
-<div id="acknowledgments">
-<section id="appendix-A">
-      <h2 id="name-acknowledgments">
-<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
-      </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<div id="sec-informative-references">
+<section id="section-8.2">
+        <h3 id="name-informative-references">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="RFC9657">[RFC9657]</dt>
+        <dd>
+<span class="refAuthor">Birrane, III, E.</span>, <span class="refAuthor">Kuhn, N.</span>, <span class="refAuthor">Qu, Y.</span>, <span class="refAuthor">Taylor, R.</span>, and <span class="refAuthor">L. Zhang</span>, <span class="refTitle">"Time-Variant Routing (TVR) Use Cases"</span>, <span class="seriesInfo">RFC 9657</span>, <span class="seriesInfo">DOI 10.17487/RFC9657</span>, <time datetime="2024-10" class="refDate">October 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9657">https://www.rfc-editor.org/info/rfc9657</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9012">[RFC9012]</dt>
+      <dd>
+<span class="refAuthor">Patel, K.</span>, <span class="refAuthor">Van de Velde, G.</span>, <span class="refAuthor">Sangli, S.</span>, and <span class="refAuthor">J. Scudder</span>, <span class="refTitle">"The BGP Tunnel Encapsulation Attribute"</span>, <span class="seriesInfo">RFC 9012</span>, <span class="seriesInfo">DOI 10.17487/RFC9012</span>, <time datetime="2021-04" class="refDate">April 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9012">https://www.rfc-editor.org/info/rfc9012</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-B">
-      <h2 id="name-authors-address">
-<a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
+<section id="appendix-A">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Your Name Here</span></div>
-<div dir="auto" class="left"><span class="org">Your Organization Here</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Li Zhang (<span class="role">editor</span>)</span></div>
+<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div dir="auto" class="left"><span class="street-address">Beiqing Road</span></div>
+<div dir="auto" class="left"><span class="locality">Beijing</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:your.email@example.com" class="email">your.email@example.com</a>
+<a href="mailto:zhangli344@huawei.com" class="email">zhangli344@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Tianran Zhou</span></div>
+<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:zhoutianran@huawei.com" class="email">zhoutianran@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Jie Dong</span></div>
+<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:jie.dong@huawei.com" class="email">jie.dong@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Minxue Wang</span></div>
+<div dir="auto" class="left"><span class="org">China Mobile</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:wangminxue@chinamobile.com" class="email">wangminxue@chinamobile.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Nkosinathi Nzima</span></div>
+<div dir="auto" class="left"><span class="org">MTN</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:Nkosinathi.Nzima@mtn.com" class="email">Nkosinathi.Nzima@mtn.com</a>
 </div>
 </address>
 </section>
