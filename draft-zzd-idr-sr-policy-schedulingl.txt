@@ -14,7 +14,7 @@ Expires: 18 September 2025                                        Huawei
 
 
               BGP SR Policy Extensions for Path Scheduling
-                 draft-zzd-idr-sr-policy-scheduling-08
+               draft-zzd-idr-sr-policy-scheduling-latest
 
 Abstract
 
