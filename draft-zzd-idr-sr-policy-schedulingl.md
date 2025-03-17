@@ -84,9 +84,9 @@ Therefore, in these cases, once the links between the headend and network contro
 
 ## Network with Frequent Topology Changes
 
-There are also some time-variant network cases that topology changes frequently. This is very typical when the number of network entities is very large (For example, a Dynamic Reachability network with hundreds or thousands of nodes). In this kind of time-variant network, a path form one network entity to another changes frequently, sometimes it can only be maintained for a few minutes or seconds.
+There are also some time-variant network cases that topology changes frequently. This is very typical when the number of network entities is very large. (For example, a Dynamic Reachability network with hundreds or thousands of nodes). In this kind of time-variant network, a path form one network entity to another changes frequently, sometimes it can only be maintained for a few minutes or seconds.
 
-Considering that there are multiple paths in a network that computed by the controller, the SR Policies with candidate paths may be advertised to the headend every few seconds. It poses great changeling to the network controller. However, using schedule information could advertise several paths once, which greatly mitigate the pressure of network controllers.
+Considering that there are multiple paths in a network that are computed by the controller, the SR Policies with candidate paths may be advertised to the headend every few seconds. It poses great challenge to the network controller. However, scheduled information could advertise several paths once, which greatly mitigate the pressure on network controllers.
 
 # Schedule Information in SR Policy
 
@@ -162,7 +162,7 @@ SR Policy SAFI NLRI: <Distinguisher, Policy-Color, Endpoint>
 
 # Schedule Information Sub-TLV
 
-The schedule information sub-TLV indicates one or more valid time slot for one or more paths. The format of schedule information sub-TLV is shown as follows:
+The schedule information sub-TLV indicates one or more valid time slots for one or more paths. The format of schedule information sub-TLV is shown as follows:
 
 ~~~
  0                   1                   2                   3
@@ -213,7 +213,7 @@ Schedules: one or more schedules, each schedule indicates the duration when the 
 
 Schedule-id: 32-bit value, the unique identifier to distinguish each schedule within a SR Policy, this value is allocated by the SR Policy generator.
 
-Flags: 8 bits, currently only 2 bits are used, the other bits are reserved.
+Flags: 8 bits, currently only 2 bits are used, the other bits are reserved and MUST be set to zero.
 
 Length: 8 bits, indicates the length of this schedule in octets.
 
@@ -221,13 +221,13 @@ S (Schedule type): one-bit flag to indicate the type of a schedule. If S=0, it i
 
 P (Period type): one-bit flag to indicate the description type of a period. if P=1, then the period is described by a start time filed and an end time field; If P =0, then the period is described by a start time field and a duration time field.
 
-R (Recurrence bound type): one-bit flag to indicate the how to determine whether the recurrence is end. if R=1, then the end of recurrence is determined by a detail timepoint; If R = 0, then the end of the recurrence is determined by the number of occurrences.
+R (Recurrence bound type): one-bit flag to indicate the how to determine whether the recurrence is end. if R=1, then the end of recurrence is determined by a specific timepoint; If R = 0, then the end of the recurrence is determined by the number of occurrences.
 
 Start Time: 64-bit value, the number of seconds since the epoch, it indicates when the candidate path (segment list) and its associated attributes start to take effect.
 
 End Time (Duration): 64-bit value, if the flag P=1, then it is the number of seconds since the epoch, it indicates when the candidate path (segment list) and its associated attributes becomes ineffective. If the flag P=0, then it is the number of seconds since the Start Time, it indicates how long the candidate path (segment list) and its associated attributes are effective.
 
-Recurrence Count/Bound(optional): 64-bit value, this field SHOULD be included when the flag P is set to 1. When the flag R=0, then this field indicates the max number of occurrences. For example, if it is set to 2, then the schedule will repeat twice with the specified Frequency and Interval. When the flag R=1, then tis field indicates the bounded timepoint of recurrence, it is descripted by the number of seconds since the epoch.
+Recurrence Count/Bound(optional): 64-bit value, this field SHOULD be included when the flag P is set to 1. When the flag R=0, then this field indicates the max number of occurrences. For example, if it is set to 2, then the schedule will repeat twice with the specified Frequency and Interval. When the flag R=1, then its field indicates the bounded timepoint of recurrence, it is descripted by the number of seconds since the epoch.
 
 Frequency(optional): 32-bit value, this field should be included when the flag S is set to 1. It is the numbers of seconds since the Start Time of an instance to the Start Time of next instance. This field indicates the recurrence frequency for all the instance of this schedule.
 
